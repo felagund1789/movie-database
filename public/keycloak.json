@@ -1,0 +1,10 @@
+{
+    "realm": "pds",
+    "auth-server-url": "https://w12dev.pds.piraeusgroup.gr:8445/auth/",
+    "ssl-required": "all",
+    "resource": "ivradmin",
+    "public-client": true,
+    "verify-token-audience": true,
+    "use-resource-role-mappings": true,
+    "confidential-port": 0
+}
