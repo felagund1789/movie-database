@@ -8,11 +8,12 @@
       disable-sort
       fixed-header
       hide-default-footer
+      no-data-text=""
     >
       <template v-slot:header>
         <v-toolbar flat>
           <v-select
-            class="mt-10 mb-5 mr-5 shrink"
+            class="mt-10 mb-5 mr-2 shrink"
             v-model="typeFilter"
             :items="movieTypes"
             label="Type"
@@ -21,7 +22,7 @@
           <v-text-field
             v-model="searchInput"
             label="Search Titles"
-            class="mt-10 mb-5 mr-5"
+            class="mt-10 mb-5 mr-2"
             append-icon="mdi-magnify"
             clear-icon="mdi-close"
             clearable
@@ -29,6 +30,9 @@
           ></v-text-field>
           <v-btn color="primary secondary--text" @click="performSearch">
             Search
+          </v-btn>
+          <v-btn class="ml-2" @click="toggleDarkMode">
+            <v-icon>mdi-theme-light-dark</v-icon>
           </v-btn>
           <v-dialog
             scrollable
@@ -200,6 +204,10 @@ export default {
 
     performSearch() {
       this.search = this.searchInput;
+    },
+
+    toggleDarkMode() {
+      this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
     }
   }
 };
