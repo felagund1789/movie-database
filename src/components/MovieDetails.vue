@@ -1,19 +1,22 @@
 <template>
-  <v-card>
-    <v-img
-      align-left
-      v-if="movie.Poster"
-      max-height="360"
-      contain
-      :lazy-src="posterPlaceholder"
-      :src="movie.Poster"
-    ></v-img>
+  <v-card align="center">
     <v-card-title>{{ movie.Title }}</v-card-title>
-    <v-card-subtitle
-      >{{ movie.Year }} &middot; {{ movie.Rated }} &middot;
-      {{ movie.Runtime }}</v-card-subtitle
-    >
-    <v-card-text>
+    <v-card-subtitle class="pa-0 ma-0" ref="imagesubtitle">
+      <img
+        :dataId="movie.imdbID"
+        crossOrigin="anonymous"
+        v-if="movie.Poster"
+        height="360px"
+        :src="movie.Poster"
+        @load="getColor()"
+      />
+    </v-card-subtitle>
+    <v-card-subtitle>
+      {{ movie.Year }} &nbsp;&middot;&nbsp;
+      {{ movie.Rated }} &nbsp;&middot;&nbsp;
+      {{ movie.Runtime }}
+    </v-card-subtitle>
+    <v-card-text align="left">
       <v-row>
         <v-col cols="8">
           <v-chip-group v-if="movie.Genre">
@@ -39,10 +42,17 @@
           </template>
         </v-col>
       </v-row>
-      <v-row v-if="movie.Plot" class="separator">
+      <v-card v-if="movie.Awards && movie.Awards !== 'N/A'" light>
+        <v-card-text>
+          <v-icon color="primary">mdi-medal</v-icon>
+          {{ movie.Awards }}
+        </v-card-text>
+      </v-card>
+      <v-row v-if="movie.Plot">
         <v-col>{{ movie.Plot }}</v-col>
       </v-row>
-      <v-row v-if="movie.Director" class="separator">
+      <v-divider></v-divider>
+      <v-row v-if="movie.Director">
         <v-col cols="2" class="strong--text">
           <template v-if="movie.Director.split(',').length > 1"
             >Directors</template
@@ -53,7 +63,8 @@
         </v-col>
         <v-col cols="10">{{ movie.Director }}</v-col>
       </v-row>
-      <v-row v-if="movie.Writer" class="separator">
+      <v-divider></v-divider>
+      <v-row v-if="movie.Writer">
         <v-col cols="2" class="strong--text">
           <template v-if="movie.Writer.split(',').length > 1">Writers</template>
           <template v-if="movie.Writer.split(',').length === 1"
@@ -62,10 +73,12 @@
         </v-col>
         <v-col cols="10">{{ movie.Writer }}</v-col>
       </v-row>
-      <v-row v-if="movie.Actors" class="separator">
+      <v-divider></v-divider>
+      <v-row v-if="movie.Actors">
         <v-col cols="2" class="strong--text">Stars</v-col>
         <v-col cols="10">{{ movie.Actors }}</v-col>
       </v-row>
+      <v-divider></v-divider>
       <v-row v-if="movie.Ratings">
         <v-col cols="2" class="strong--text">Ratings</v-col>
         <v-col cols="10">
@@ -126,7 +139,17 @@ export default {
       }
     },
 
+    getColor() {
+      // TODO: Import colorThief as an npm package
+      let img = document.querySelector(`img[dataid="${this.movie.imdbID}"]`);
+      // Make sure image is finished loading
+      let color = window.colorThief.getColor(img);
+      this.$refs.imagesubtitle.style.height = "360px";
+      this.$refs.imagesubtitle.style.backgroundColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
+    },
+
     getRatingValue(rating, stars) {
+      // TODO: replace eval()
       return stars * eval(rating.replace("%", "/100"));
     },
 
@@ -136,9 +159,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.row.separator {
-  border-bottom: grey 1px solid;
-}
-</style>
