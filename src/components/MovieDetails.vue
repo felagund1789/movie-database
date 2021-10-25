@@ -66,6 +66,22 @@
         <v-col cols="2" class="strong--text">Stars</v-col>
         <v-col cols="10">{{ movie.Actors }}</v-col>
       </v-row>
+      <v-row v-if="movie.Ratings">
+        <v-col cols="2" class="strong--text">Ratings</v-col>
+        <v-col cols="10">
+          <div v-for="rating in movie.Ratings" :key="rating.Source">
+            {{ rating.Source }}:
+            <span class="strong--text">{{ rating.Value }}</span>
+            <v-rating
+              background-color="grey"
+              half-increments
+              length="5"
+              readonly
+              :value="getRatingValue(rating.Value, 5)"
+            ></v-rating>
+          </div>
+        </v-col>
+      </v-row>
     </v-card-text>
     <v-card-actions>
       <v-spacer></v-spacer>
@@ -108,6 +124,10 @@ export default {
       } else {
         this.movie = {};
       }
+    },
+
+    getRatingValue(rating, stars) {
+      return stars * eval(rating.replace("%", "/100"));
     },
 
     close() {
