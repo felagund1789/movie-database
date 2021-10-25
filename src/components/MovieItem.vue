@@ -4,13 +4,13 @@
       <v-img
         v-if="movie.Poster !== 'N/A'"
         max-height="360"
-        lazy-src="images/poster-placeholder.png"
+        :lazy-src="posterPlaceholder"
         :src="movie.Poster"
       ></v-img>
       <v-img
         v-if="movie.Poster === 'N/A'"
         max-height="360"
-        src="images/poster-placeholder.png"
+        :src="posterPlaceholder"
       ></v-img>
     </template>
     <v-card-text>
@@ -20,6 +20,8 @@
 </template>
 
 <script>
+import { POSTER_PLACEHOLDER_IMAGE } from "../config";
+
 export default {
   model: {
     prop: "data",
@@ -29,7 +31,9 @@ export default {
     data: Boolean,
     movie: Object
   },
-  data: () => ({}),
+  data: () => ({
+    posterPlaceholder: POSTER_PLACEHOLDER_IMAGE
+  }),
   methods: {}
 };
 </script>

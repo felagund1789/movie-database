@@ -1,13 +1,16 @@
 <template>
   <v-app>
-    <v-app-bar app color="secondary">
+    <v-app-bar
+      app
+      color="secondary"
+      shrink-on-scroll
+      prominent
+      src="./assets/movies2.jpg"
+      fade-img-on-scroll
+    >
       <v-toolbar-title>
         <span class="primary--text"><b>Movie Database</b></span>
       </v-toolbar-title>
-
-      <v-spacer></v-spacer>
-
-      <v-img src="./assets/logo-dark.png" contain max-height="150"></v-img>
 
       <template v-slot:extension>
         <v-tabs v-model="currentPath" color="primary">

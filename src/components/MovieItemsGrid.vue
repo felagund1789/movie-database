@@ -11,21 +11,25 @@
     >
       <template v-slot:header>
         <v-toolbar flat>
-          <v-text-field
-            v-model="search"
-            label="Search Titles"
-            class="mt-10 mb-5 shrink"
-            append-icon="mdi-magnify"
-            clear-icon="mdi-close"
-            clearable
-          ></v-text-field>
           <v-select
-            class="mt-10 mb-5 shrink pl-5"
+            class="mt-10 mb-5 mr-5 shrink"
             v-model="typeFilter"
             :items="movieTypes"
             label="Type"
             clearable
           ></v-select>
+          <v-text-field
+            v-model="searchInput"
+            label="Search Titles"
+            class="mt-10 mb-5 mr-5"
+            append-icon="mdi-magnify"
+            clear-icon="mdi-close"
+            clearable
+            @keydown.enter="performSearch"
+          ></v-text-field>
+          <v-btn color="primary secondary--text" @click="performSearch">
+            Search
+          </v-btn>
           <v-dialog
             scrollable
             v-model="dialog"
@@ -74,6 +78,7 @@ export default {
   data: () => ({
     dialog: false,
     typeFilter: "",
+    searchInput: "",
     search: "",
     loading: false,
     movies: [],
@@ -97,7 +102,8 @@ export default {
     movieTypes: [
       { value: "movie", text: "Movies" },
       { value: "series", text: "Series" },
-      { value: "episode", text: "Episodes" }
+      { value: "episode", text: "Episodes" },
+      { value: "game", text: "Games" }
     ]
   }),
 
@@ -138,8 +144,10 @@ export default {
           this.typeFilter,
           1
         );
-        this.movies = response.data.Search;
-        this.totalMovies = parseInt(response.data.totalResults);
+        if (response.data.Response === "True") {
+          this.movies = response.data.Search;
+          this.totalMovies = parseInt(response.data.totalResults);
+        }
         this.loading = false;
       } else {
         this.movies = [];
@@ -148,17 +156,21 @@ export default {
     },
 
     async loadNextPage() {
-      this.loading = true;
-      if (this.search && this.movies.length < this.totalMovies) {
+      if (
+        this.search &&
+        this.movies.length < this.totalMovies &&
+        !this.loading
+      ) {
+        this.loading = true;
         this.currentPage++;
         let response = await MovieService.getMovies(
           this.search,
           this.typeFilter,
           this.currentPage
         );
-        this.movies = this.movies.concat(response.data.Search);
-        this.loading = false;
-      } else {
+        if (response.data.Response === "True") {
+          this.movies = this.movies.concat(response.data.Search);
+        }
         this.loading = false;
       }
     },
@@ -184,6 +196,10 @@ export default {
         threshold: 0.25
       });
       this.observer.observe(document.querySelector("#loader"));
+    },
+
+    performSearch() {
+      this.search = this.searchInput;
     }
   }
 };

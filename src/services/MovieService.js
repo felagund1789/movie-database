@@ -22,7 +22,7 @@ class MovieService {
   }
 
   async getMovie(id) {
-    return http.get(`${this.url}&i=${id}&plot=full`);
+    return http.get(`${this.url}&i=${id}&plot=short`);
   }
 }
 

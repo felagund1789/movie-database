@@ -12,12 +12,14 @@ export default new Vuetify({
         primary: "#f5c518",
         secondary: "#000000",
         accent: "#f5c518",
+        strong: "#ffffff",
         background: colors.grey.darken4
       },
       light: {
-        primary: "#000000",
-        secondary: "#f5c518",
+        primary: "#f5c518",
+        secondary: "#000000",
         accent: "#f5c518",
+        strong: "#000000",
         background: colors.grey.lighten4
       }
     }
