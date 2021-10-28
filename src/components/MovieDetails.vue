@@ -143,7 +143,7 @@ export default {
       // TODO: Import colorThief as an npm package
       let img = document.querySelector(`img[dataid="${this.movie.imdbID}"]`);
       // Make sure image is finished loading
-      let color = window.colorThief.getColor(img);
+      let color = this.$colorThief.getColor(img);
       this.$refs.imagesubtitle.style.height = "360px";
       this.$refs.imagesubtitle.style.backgroundColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
     },
