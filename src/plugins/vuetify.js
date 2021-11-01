@@ -4,9 +4,13 @@ import colors from "vuetify/lib/util/colors";
 
 Vue.use(Vuetify);
 
+let darkMode =
+  window.matchMedia &&
+  window.matchMedia("(prefers-color-scheme: dark)").matches;
+
 export default new Vuetify({
   theme: {
-    dark: true,
+    dark: darkMode,
     themes: {
       dark: {
         primary: "#f5c518",
