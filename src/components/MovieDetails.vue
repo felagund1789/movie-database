@@ -1,6 +1,10 @@
 <template>
   <v-card align="center">
-    <v-card-title>{{ movie.Title }}</v-card-title>
+    <v-card-title>
+      {{ movie.Title }}
+      <v-spacer></v-spacer>
+      <v-icon @click="close">mdi-close</v-icon>
+    </v-card-title>
     <v-card-subtitle class="pa-0 ma-0" ref="imagesubtitle">
       <img
         :dataId="movie.imdbID"
@@ -19,15 +23,16 @@
     <v-card-text align="left">
       <v-row>
         <v-col cols="8">
-          <v-chip-group v-if="movie.Genre">
+          <template v-if="movie.Genre">
             <v-chip
               outlined
               color="strong"
+              class="ma-1"
               v-for="genre in movie.Genre.split(',')"
               :key="genre"
               >{{ genre }}</v-chip
             >
-          </v-chip-group>
+          </template>
         </v-col>
         <v-col cols="4" align="center">
           <template v-if="movie.imdbRating">
@@ -53,7 +58,7 @@
       </v-row>
       <v-divider></v-divider>
       <v-row v-if="movie.Director">
-        <v-col cols="2" class="strong--text">
+        <v-col cols="3" class="strong--text">
           <template v-if="movie.Director.split(',').length > 1"
             >Directors</template
           >
@@ -61,27 +66,27 @@
             >Director</template
           >
         </v-col>
-        <v-col cols="10">{{ movie.Director }}</v-col>
+        <v-col cols="9">{{ movie.Director }}</v-col>
       </v-row>
       <v-divider></v-divider>
       <v-row v-if="movie.Writer">
-        <v-col cols="2" class="strong--text">
+        <v-col cols="3" class="strong--text">
           <template v-if="movie.Writer.split(',').length > 1">Writers</template>
           <template v-if="movie.Writer.split(',').length === 1"
             >Writer</template
           >
         </v-col>
-        <v-col cols="10">{{ movie.Writer }}</v-col>
+        <v-col cols="9">{{ movie.Writer }}</v-col>
       </v-row>
       <v-divider></v-divider>
       <v-row v-if="movie.Actors">
-        <v-col cols="2" class="strong--text">Stars</v-col>
-        <v-col cols="10">{{ movie.Actors }}</v-col>
+        <v-col cols="3" class="strong--text">Stars</v-col>
+        <v-col cols="9">{{ movie.Actors }}</v-col>
       </v-row>
       <v-divider></v-divider>
       <v-row v-if="movie.Ratings">
-        <v-col cols="2" class="strong--text">Ratings</v-col>
-        <v-col cols="10">
+        <v-col cols="3" class="strong--text">Ratings</v-col>
+        <v-col cols="9">
           <div v-for="rating in movie.Ratings" :key="rating.Source">
             {{ rating.Source }}:
             <span class="strong--text">{{ rating.Value }}</span>
@@ -96,11 +101,11 @@
         </v-col>
       </v-row>
     </v-card-text>
-    <v-card-actions>
+    <!-- <v-card-actions>
       <v-spacer></v-spacer>
       <v-btn color="primary secondary--text" @click="close"> Close </v-btn>
       <v-spacer></v-spacer>
-    </v-card-actions>
+    </v-card-actions> -->
   </v-card>
 </template>
 
