@@ -4,9 +4,12 @@ import colors from "vuetify/lib/util/colors";
 
 Vue.use(Vuetify);
 
-let darkMode =
-  window.matchMedia &&
-  window.matchMedia("(prefers-color-scheme: dark)").matches;
+let darkMode = sessionStorage.getItem("darkMode");
+if (!darkMode) {
+  darkMode =
+    window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches;
+}
 
 export default new Vuetify({
   theme: {
