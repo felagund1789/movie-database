@@ -5,7 +5,7 @@
       color="secondary"
       shrink-on-scroll
       prominent
-      src="./assets/movies2.jpg"
+      src="./assets/movies.jpg"
       fade-img-on-scroll
     >
       <v-toolbar-title>
@@ -13,34 +13,22 @@
       </v-toolbar-title>
 
       <template v-slot:extension>
-        <v-tabs v-model="currentPath" color="primary">
-          <v-tab
-            :to="{ name: 'movies' }"
-            class="secondary primary--text"
-            @click="filterByType = 'movie'"
-          >
+        <v-tabs v-model="currentPath">
+          <v-tab :to="{ name: 'movies' }" class="transparent primary--text">
             <v-icon v-if="$route.path.indexOf('movies') > -1">
               mdi-movie
             </v-icon>
             Movies
           </v-tab>
 
-          <v-tab
-            :to="{ name: 'series' }"
-            class="secondary primary--text"
-            @click="filterByType = 'series'"
-          >
+          <v-tab :to="{ name: 'series' }" class="transparent primary--text">
             <v-icon v-if="$route.path.indexOf('series') > -1">
               mdi-television-box
             </v-icon>
             Series
           </v-tab>
 
-          <v-tab
-            :to="{ name: 'games' }"
-            class="secondary primary--text"
-            @click="filterByType = 'game'"
-          >
+          <v-tab :to="{ name: 'games' }" class="transparent primary--text">
             <v-icon v-if="$route.path.indexOf('games') > -1">
               mdi-google-controller
             </v-icon>
@@ -65,10 +53,15 @@ export default {
   name: "App",
 
   data: () => ({
-    currentPath: null,
-    filterByType: "movie"
+    currentPath: null
   }),
 
   methods: {}
 };
 </script>
+
+<style scoped>
+.transparent {
+  background-color: rgba(0, 0, 0, 0);
+}
+</style>
