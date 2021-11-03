@@ -12,13 +12,6 @@
     >
       <template v-slot:header>
         <v-toolbar flat>
-          <v-select
-            class="mt-10 mb-5 mr-2 shrink"
-            v-model="typeFilter"
-            :items="movieTypes"
-            label="Type"
-            clearable
-          ></v-select>
           <v-text-field
             v-model="searchInput"
             label="Search Titles"
@@ -27,6 +20,7 @@
             clear-icon="mdi-close"
             clearable
             @keydown.enter="performSearch"
+            @click:clear="clearSearch"
           ></v-text-field>
           <v-btn color="primary secondary--text" @click="performSearch">
             Search
@@ -76,12 +70,13 @@ import MovieDetails from "./MovieDetails";
 export default {
   components: { MovieItem, MovieDetails },
   props: {
-    showDialog: Boolean
+    showDialog: Boolean,
+    type: String
   },
 
   data: () => ({
     dialog: false,
-    typeFilter: "",
+    typeFilter: "movie",
     searchInput: "",
     search: "",
     loading: false,
@@ -121,6 +116,9 @@ export default {
       }
       this.$emit("input", val);
     },
+    type(val) {
+      this.typeFilter = val;
+    },
     search() {
       this.getMovies();
     },
@@ -144,7 +142,7 @@ export default {
       this.currentPage = 1;
       if (this.search) {
         let response = await MovieService.getMovies(
-          this.search,
+          this.search.trim(),
           this.typeFilter,
           1
         );
@@ -204,6 +202,10 @@ export default {
 
     performSearch() {
       this.search = this.searchInput;
+    },
+
+    clearSearch() {
+      this.search = "";
     },
 
     toggleDarkMode() {

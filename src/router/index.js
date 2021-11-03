@@ -12,13 +12,26 @@ const routes = [
   {
     path: "/movies",
     name: "movies",
-    component: MovieItemsGrid
+    component: MovieItemsGrid,
+    props: {
+      type: "movie"
+    }
   },
   {
-    path: "/movies/:searchText",
-    name: "movie-search",
+    path: "/series",
+    name: "series",
     component: MovieItemsGrid,
-    props: true
+    props: {
+      type: "series"
+    }
+  },
+  {
+    path: "/games",
+    name: "games",
+    component: MovieItemsGrid,
+    props: {
+      type: "game"
+    }
   }
 ];
 

@@ -14,9 +14,37 @@
 
       <template v-slot:extension>
         <v-tabs v-model="currentPath" color="primary">
-          <v-tab to="/movies">
-            <v-icon>mdi-film</v-icon>
+          <v-tab
+            :to="{ name: 'movies' }"
+            class="secondary primary--text"
+            @click="filterByType = 'movie'"
+          >
+            <v-icon v-if="$route.path.indexOf('movies') > -1">
+              mdi-movie
+            </v-icon>
             Movies
+          </v-tab>
+
+          <v-tab
+            :to="{ name: 'series' }"
+            class="secondary primary--text"
+            @click="filterByType = 'series'"
+          >
+            <v-icon v-if="$route.path.indexOf('series') > -1">
+              mdi-television-box
+            </v-icon>
+            Series
+          </v-tab>
+
+          <v-tab
+            :to="{ name: 'games' }"
+            class="secondary primary--text"
+            @click="filterByType = 'game'"
+          >
+            <v-icon v-if="$route.path.indexOf('games') > -1">
+              mdi-google-controller
+            </v-icon>
+            Games
           </v-tab>
 
           <v-tabs-slider color="primary"></v-tabs-slider>
@@ -37,16 +65,10 @@ export default {
   name: "App",
 
   data: () => ({
-    drawer: false,
-    selectedItem: 0,
     currentPath: null,
-    showDialog: false
+    filterByType: "movie"
   }),
 
-  methods: {
-    logout() {
-      window.keycloak.logout();
-    }
-  }
+  methods: {}
 };
 </script>
