@@ -4,7 +4,7 @@ import colors from "vuetify/lib/util/colors";
 
 Vue.use(Vuetify);
 
-let darkMode = sessionStorage.getItem("darkMode");
+let darkMode = localStorage.getItem("darkMode");
 if (!darkMode) {
   darkMode =
     window.matchMedia &&

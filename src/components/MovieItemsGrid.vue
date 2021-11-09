@@ -210,7 +210,7 @@ export default {
 
     toggleDarkMode() {
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
-      sessionStorage.setItem("darkMode", this.$vuetify.theme.dark);
+      localStorage.setItem("darkMode", this.$vuetify.theme.dark);
     }
   }
 };
