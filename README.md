@@ -20,7 +20,7 @@ This project supports "dark mode" styling, and by default it will follow the col
 
 ### 📱 Responsive Design
 
-This webapp is built using responsive design in mind, and by default it will adjust its content depnending on the screen size of the medium (e.g. phone/computer). More info about color preference web API's can be found here: [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Responsive_Design).
+This webapp is built using responsive design in mind, and by default it will adjust its content depending on the screen size of the medium (e.g. phone/computer). More info about color preference web API's can be found here: [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Responsive_Design).
 <div style="text-align: center;">
   <table style="border: 0px;">
     <tr>
@@ -49,7 +49,7 @@ npm run serve
 npm run lint
 ```
 
-### 📦 Build for production
+### 📦 Building for production
 ```sh
 # Compiles and minifies for production
 npm run build
