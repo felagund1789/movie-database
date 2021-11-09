@@ -2,7 +2,7 @@
   <h1>🎬 Movie database 🎬</h1>
   <strong>A movie database webapp built using Vue.js and Vuetify and backed by Open Movie DataBase API.</strong><br/>
   <p>
-    <img src="public/images/movies-dark.png" width="1280" height="640" alt="movie-database" />
+    <img src="public/images/movies-dark.png" width="800" height="400" alt="movie-database" />
   </p>
   <p>
   Movie database is a sample webapp built with <a href="https://vuejs.org/">Vue.js</a> and <a href="https://vuetifyjs.com/">Vuetify</a> as a frontend to the <a href="https://omdbapi.com/">Open Movie DataBase API</a>. It is designed as a responsive webapp and supports theming and dark mode.
