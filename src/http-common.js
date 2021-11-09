@@ -1,20 +1,9 @@
 import axios from "axios";
-import authHeader from "./auth-header";
 
 export default axios.create({
-  headers: Object.assign(
-    {
-      "Content-type": "application/json"
-    },
-    authHeader()
-  )
+  headers: Object.assign({ "Content-type": "application/json" })
 });
 
 export const httpUriList = axios.create({
-  headers: Object.assign(
-    {
-      "Content-type": "text/uri-list"
-    },
-    authHeader()
-  )
+  headers: Object.assign({ "Content-type": "text/uri-list" })
 });
