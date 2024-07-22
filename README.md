@@ -14,7 +14,7 @@
 
 ### 🌙 Dark Mode
 
-This project supports "dark mode" styling, and by default it will follow the color preference on your device. It also allows for overriding this using buttons at the top right of the screen, which will persist the preference to local storage on your device. More info about color preference web API's can be found here: [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme).
+This project supports "dark mode" styling, and by default it will follow the color preference on your device. It also allows for overriding this using buttons at the top right of the screen, which will persist the preference to local storage on your device. More info about color preference web APIs can be found here: [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme).
 <div style="text-align: center">
   <p>
     <img src="./public/images/movies-dark.png" width="800" height="400" alt="Movie database dark theme" />
@@ -26,7 +26,7 @@ This project supports "dark mode" styling, and by default it will follow the col
 
 ### 📱 Responsive Design
 
-This webapp is built using responsive design in mind, and by default it will adjust its content depending on the screen size of the medium (e.g. phone/computer). More info about color preference web API's can be found here: [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Responsive_Design).
+This webapp is built using responsive design in mind, and by default it will adjust its content depending on the screen size of the medium (e.g. phone/computer). More info about responsive design can be found here: [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Responsive_Design).
 <div style="text-align: center;">
   <table style="border: 0px;">
     <tr>
